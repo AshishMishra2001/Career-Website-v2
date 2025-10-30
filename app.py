@@ -1,43 +1,52 @@
 from flask import Flask, render_template, jsonify, request
+from database import load_jobs_from_db
+
 app=Flask(__name__)
-JOBS=[
-  {
-    'id':1,
-    'title':'Data Analyst',
-    'location':'Delhi,India',
-    'salary':'Rs. 120000'
-  },
-  {
-    'id':2,
-    'title':'Data Analyst',
-    'location':'Delhi,India',
-    'salary':'Rs. 120000'
-  },
-  {
-    'id':3,
-    'title':'Data Analyst',
-    'location':'Delhi,India',
-    'salary':'Rs. 120000'
-  },
-  {
-    'id':4,
-    'title':'Backend Developer',
-    'location':'Delhi,India',
-    'salary':'Rs. 120000'
-  },
-  {
-    'id':5,
-    'title':'Frontend Developer',
-    'location':'Delhi,India'
-  }
-]
+# JOBS=[
+#   {
+#     'id':1,
+#     'title':'Data Analyst',
+#     'location':'Delhi,India',
+#     'salary':'Rs. 120000'
+#   },
+#   {
+#     'id':2,
+#     'title':'Data Analyst',
+#     'location':'Delhi,India',
+#     'salary':'Rs. 120000'
+#   },
+#   {
+#     'id':3,
+#     'title':'Data Analyst',
+#     'location':'Delhi,India',
+#     'salary':'Rs. 120000'
+#   },
+#   {
+#     'id':4,
+#     'title':'Backend Developer',
+#     'location':'Delhi,India',
+#     'salary':'Rs. 120000'
+#   },
+#   {
+#     'id':5,
+#     'title':'Frontend Developer',
+#     'location':'Delhi,India'
+#   }
+# ]
+
+
+   # print(result_dicts)
+
+
 @app.route("/")
 def hello_world():
-  return render_template('home.html',jobs=JOBS, company_name="Career")
+  jobs=load_jobs_from_db()
+  return render_template('home.html',jobs=jobs, company_name="Career")
 
 @app.route("/api/jobs")
 def list_jobs():
-  return jsonify(JOBS)
+  jobs=load_jobs_from_db()
+  return jsonify(jobs)
 
 
 
