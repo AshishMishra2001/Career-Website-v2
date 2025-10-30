@@ -50,7 +50,7 @@ def list_jobs():
 
 @app.route("/jobs/<id>")
 def show_job(id):
-  job=load_jobs_from_db(id)
+  job=load_job_from_db(id)
   return jsonify(job)
 
 

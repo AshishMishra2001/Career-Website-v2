@@ -18,3 +18,8 @@ def load_job_from_db(id):
       text("SELECT * FROM jobs WHERE id = :val"),
       val=id
     )
+    rows = result.all()
+    if len(rows)==0:
+      return None
+    else:
+      return dict(rows[0].mapping)
