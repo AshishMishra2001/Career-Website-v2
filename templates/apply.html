@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Apply for {{ job['title'] }}</title>
+</head>
+<body>
+  <h2>Apply for {{ job['title'] }}</h2>
+  <form action="/apply/{{ job['id'] }}" method="POST">
+    <input type="text" name="name" placeholder="Your Name" required><br>
+    <input type="email" name="email" placeholder="Your Email" required><br>
+    <textarea name="message" placeholder="Why should we hire you?" required></textarea><br>
+    <button type="submit">Send Application</button>
+  </form>
+</body>
+</html>
